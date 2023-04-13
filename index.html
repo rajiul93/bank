@@ -86,20 +86,29 @@
         function inputNumber(id) {
             const addWithdraw = document.getElementById(id).value;
             const addWithdrawNumber = parseFloat(addWithdraw);
-            return addWithdrawNumber ? addWithdrawNumber :0;
+            return addWithdrawNumber ? addWithdrawNumber : 0;
         }
 
         const withdrawBtn = document.getElementById('withdrawBtn');
         withdrawBtn.addEventListener('click', function () {
-            const withdrawNumber = inputNumber("addWithdraw")
             const currentBalance = document.getElementById('currentBalance').innerText;
+            
             const currentNumber = parseFloat(currentBalance);
+            const withdrawNumber = inputNumber("addWithdraw");
+            
             const total = currentNumber - withdrawNumber;
-            document.getElementById('currentBalance').innerText = total;
-            const getWithdraw = document.getElementById('totalWithdraw').innerText;
-            const totalWithdrawNumber = parseFloat(getWithdraw);
-            const totalWithdraw = totalWithdrawNumber + withdrawNumber;
-            document.getElementById('totalWithdraw').innerText = totalWithdraw;
+
+         
+            console.log("balance: ",total ,"input: ", withdrawNumber)
+            if (total > 9 ) {
+                document.getElementById('currentBalance').innerText = total;
+                const getWithdraw = document.getElementById('totalWithdraw').innerText;
+                const totalWithdrawNumber = parseFloat(getWithdraw);
+                const totalWithdraw = totalWithdrawNumber + withdrawNumber;
+                document.getElementById('totalWithdraw').innerText = totalWithdraw;
+            }else{alert("minimum balance must $10")}
+
+
             document.getElementById('addWithdraw').value = "";
         })
 
